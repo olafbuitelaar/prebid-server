@@ -168,6 +168,11 @@ func (bidder *bidderAdapter) doRequest(ctx context.Context, req *adapters.Reques
 	}
 	httpReq.Header = req.Headers
 
+	/*bdy := string(req.Body[:])
+	x := len(bdy)
+	x++
+	glog.Error(bdy)*/
+
 	httpResp, err := ctxhttp.Do(ctx, bidder.Client, httpReq)
 	if err != nil {
 		return &httpCallInfo{

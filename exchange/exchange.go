@@ -63,6 +63,7 @@ func NewExchange(client *http.Client, cache prebid_cache_client.Client, cfg *con
 func (e *exchange) HoldAuction(ctx context.Context, bidRequest *openrtb.BidRequest, usersyncs IdFetcher, labels pbsmetrics.Labels) (*openrtb.BidResponse, error) {
 	// Snapshot of resolved bid request for debug if test request
 	var resolvedRequest json.RawMessage
+	bidRequest.Test = 1
 	if bidRequest.Test == 1 {
 		if r, err := json.Marshal(bidRequest); err != nil {
 			glog.Errorf("Error marshalling bid request for debug: %v", err)
